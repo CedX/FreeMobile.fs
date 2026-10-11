@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Company>Cedric-Belin.fr</Company>
+		<Copyright>© Cédric Belin</Copyright>
+		<Description>Send SMS messages to your Free Mobile device.</Description>
+		<Product>Free Mobile for F#</Product>
+		<Version>6.0.0</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>CedX</Authors>
+		<IncludeSymbols>true</IncludeSymbols>
+		<PackageIcon>Icon.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+		<PackageTags>api;client;free;mobile;sms</PackageTags>
+		<RepositoryUrl>https://github.com/CedX/FreeMobile.fs.git</RepositoryUrl>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AssemblyName>Belin.FreeMobile.FSharp</AssemblyName>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<HotReloadAutoRestart>true</HotReloadAutoRestart>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutDir>../Binaries</OutDir>
+		<RootNamespace>Belin.FreeMobile</RootNamespace>
+		<TargetFramework>net10.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="$(RootNamespace).Tests" />
+		<None Include="../Icon.png" Pack="true" PackagePath="" />
+		<None Include="../ReadMe.md" Pack="true" PackagePath="" />
+		<PackageReference Update="FSharp.Core" Version="10.1.401" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- <Compile Include="Client.fs" /> -->
+	</ItemGroup>
+</Project>
