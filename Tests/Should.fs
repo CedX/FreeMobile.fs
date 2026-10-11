@@ -1,4 +1,4 @@
-namespace Belin.Lcov
+namespace Belin.FreeMobile
 
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
