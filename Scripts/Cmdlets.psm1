@@ -29,7 +29,7 @@ function Get-Version {
 		[switch] $PassThru
 	)
 
-	$xml = [xml] (Get-Content "$PSScriptRoot/../FrreMobile.slnx" -Raw)
+	$xml = [xml] (Get-Content "$PSScriptRoot/../FreeMobile.slnx" -Raw)
 	$version = [semver] $xml.Solution.ProjectVersion
 	$PassThru ? $version : $version.ToString()
 }
