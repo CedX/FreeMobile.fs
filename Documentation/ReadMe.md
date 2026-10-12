@@ -24,7 +24,7 @@ dotnet package add Belin.FreeMobile.FSharp
 For detailed instructions, see the [installation guide](Installation.md).
 
 ## Usage
-This library provides the `Client` class, which allow to send SMS messages to your mobile phone by using the `SendMessage()` or `SendMessageAsync()` method:
+This library provides the `Client` class, which allow to send SMS messages to your mobile phone by using the `SendMessageAsync()` method:
 
 ```fsharp
 open Belin.FreeMobile
