@@ -28,7 +28,7 @@ type Client(credential: NetworkCredential) =
   member val UserAgent = $".NET/{Environment.Version} | Belin.FreeMobile.FSharp/{version.ToString 3}" with get, set
 
   /// Creates a new client.
-  new(userName: string, password: string) = new Client(NetworkCredential(userName, password))
+  new (userName: string, password: string) = new Client(NetworkCredential(userName, password))
 
   interface IDisposable with
     /// Releases any resources associated with this object.
