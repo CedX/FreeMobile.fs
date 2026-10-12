@@ -1,4 +1,4 @@
-#r "../Binaries/Belin.FreeMobile.FSharp.dll" // TODO "nuget: Belin.FreeMobile.FSharp"
+#r "nuget: Belin.FreeMobile.FSharp"
 open Belin.FreeMobile
 
 // Sends an SMS notification.
