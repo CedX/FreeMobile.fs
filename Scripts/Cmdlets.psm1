@@ -22,16 +22,8 @@ function Build-DotNetSolution {
 	The solution version number.
 #>
 function Get-Version {
-	[CmdletBinding()]
-	[OutputType([semver])]
-	param (
-		# Value indicating whether to return a `[semver]` object.
-		[switch] $PassThru
-	)
-
 	$xml = [xml] (Get-Content "$PSScriptRoot/../FreeMobile.slnx" -Raw)
-	$version = [semver] $xml.Solution.ProjectVersion
-	$PassThru ? $version : $version.ToString()
+	[semver] $xml.Solution.ProjectVersion
 }
 
 <#
