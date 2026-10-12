@@ -38,6 +38,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!-- <Compile Include="Client.fs" /> -->
+		<Compile Include="Client.fs" />
 	</ItemGroup>
 </Project>
