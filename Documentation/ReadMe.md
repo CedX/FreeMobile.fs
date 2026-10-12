@@ -29,11 +29,12 @@ This library provides the `Client` class, which allow to send SMS messages to yo
 ```fsharp
 open Belin.FreeMobile
 
-do
+async {
   use client = new Client("your account identifier", "your API key")
-  match client.SendMessageAsync "Hello World from F#" |> Async.RunSynchronously with
+  match! client.SendMessageAsync "Hello World from F#" with
   | Ok _ -> printfn "The message was sent successfully."
   | Error error -> printfn $"An error occurred: {error.Message}"
+}
 ```
 
 The `Client.SendMessageAsync()` method returns an `Async<Result>` that describes whether the message was sent successfully.
