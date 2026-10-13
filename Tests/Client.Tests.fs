@@ -10,28 +10,16 @@ type ClientTests(testContext: TestContext) =
   [<TestMethod>]
   member _.NetworkError() =
     use client = new Client("anonymous", "secret", BaseUrl = Uri "http://localhost:666")
-
-    // It should throw a `HttpRequestException` if a network error occurred.
-    client.SendMessage("Hello World!", testContext.CancellationToken)
-    |> Result.isError
-    |> Should.beTrue
+    client.SendMessage("Hello World!", testContext.CancellationToken) |> Result.isError |> Should.beTrue
 
   [<TestMethod>]
   member _.InvalidCredentials() =
     use client = new Client("anonymous", "secret")
-
-    // It should throw a `HttpRequestException` if the credentials are invalid.
-    client.SendMessage("Hello World!", testContext.CancellationToken)
-    |> Result.isError
-    |> Should.beTrue
+    client.SendMessage("Hello World!", testContext.CancellationToken) |> Result.isError |> Should.beTrue
 
   [<TestMethod>]
   member _.ValidCredentials() =
     let userName = Environment.GetEnvironmentVariable "FREEMOBILE_ACCOUNT"
     let password = Environment.GetEnvironmentVariable "FREEMOBILE_API_KEY"
     use client = new Client(nonNull userName, nonNull password)
-
-    // It should send SMS messages if the credentials are valid.
-    client.SendMessage("Hello Cédric, from F#", testContext.CancellationToken)
-    |> Result.isError
-    |> Should.beFalse
+    client.SendMessage("Hello Cédric, from F#", testContext.CancellationToken) |> Result.isError |> Should.beFalse
