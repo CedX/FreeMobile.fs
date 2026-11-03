@@ -37,7 +37,7 @@ type Client(credential: NetworkCredential) =
       GC.SuppressFinalize this
 
   /// Sends an SMS message to the underlying account.
-  member this.SendMessageAsync(text: string, ?cancellationToken: CancellationToken): Async<Result<unit, HttpRequestException>> = async {
+  member this.AsyncSendMessage(text: string, ?cancellationToken: CancellationToken): Async<Result<unit, HttpRequestException>> = async {
     let trimmedText = text.Trim()
     let queryString = HttpUtility.ParseQueryString ""
     queryString.Add("msg", if trimmedText.Length > 160 then trimmedText[0..159] else trimmedText)
@@ -62,7 +62,7 @@ type Client(credential: NetworkCredential) =
 
   /// Sends an SMS message to the underlying account.
   member this.SendMessage(text: string, ?cancellationToken: CancellationToken): Result<unit, HttpRequestException> =
-    this.SendMessageAsync(text, ?cancellationToken = cancellationToken) |> Async.RunSynchronously // fsharplint:disable-line TupleCommaSpacing
+    this.AsyncSendMessage(text, ?cancellationToken = cancellationToken) |> Async.RunSynchronously // fsharplint:disable-line TupleCommaSpacing
 
   /// Releases any resources associated with this object.
   member private _.Dispose(disposing: bool) =

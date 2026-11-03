@@ -24,20 +24,20 @@ dotnet package add Belin.FreeMobile.FSharp
 For detailed instructions, see the [installation guide](Installation.md).
 
 ## Usage
-This library provides the `Client` class, which allow to send SMS messages to your mobile phone by using the `SendMessageAsync()` method:
+This library provides the `Client` class, which allow to send SMS messages to your mobile phone by using the `AsyncSendMessage()` method:
 
 ```fsharp
 open Belin.FreeMobile
 
 async {
   use client = new Client("your account identifier", "your API key")
-  match! client.SendMessageAsync "Hello World from F#" with
+  match! client.AsyncSendMessage "Hello World from F#" with
   | Ok _ -> printfn "The message was sent successfully."
   | Error error -> printfn $"An error occurred: {error.Message}"
 }
 ```
 
-The `Client.SendMessageAsync()` method returns an `Async<Result>` that describes whether the message was sent successfully.
+The `Client.AsyncSendMessage()` method returns an `Async<Result>` that describes whether the message was sent successfully.
 
 > [!WARNING]
 > The text of the messages will be automatically truncated to **160** characters:  
