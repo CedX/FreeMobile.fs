@@ -62,7 +62,7 @@ type Client(credential: NetworkCredential) =
 
   /// Sends an SMS message to the underlying account.
   member this.SendMessage(text: string, ?cancellationToken: CancellationToken): Result<unit, HttpRequestException> =
-    this.AsyncSendMessage(text, ?cancellationToken = cancellationToken) |> Async.RunSynchronously // fsharplint:disable-line TupleCommaSpacing
+    this.AsyncSendMessage(text, ?cancellationToken = cancellationToken) |> Async.RunSynchronously
 
   /// Releases any resources associated with this object.
   member private _.Dispose(disposing: bool) =
