@@ -5,21 +5,21 @@ open System
 
 /// Tests the features of the `Client` class.
 [<TestClass>]
-type ClientTests(testContext: TestContext) =
+type ClientTests() =
 
   [<TestMethod>]
   member _.NetworkError() =
     use client = new Client("anonymous", "secret", BaseUrl = Uri "http://localhost:666")
-    client.SendMessage("Hello World!", testContext.CancellationToken) |> Result.isError |> Should.beTrue
+    client.SendMessage "Hello World!" |> Result.isError |> Should.beTrue
 
   [<TestMethod>]
   member _.InvalidCredentials() =
     use client = new Client("anonymous", "secret")
-    client.SendMessage("Hello World!", testContext.CancellationToken) |> Result.isError |> Should.beTrue
+    client.SendMessage "Hello World!" |> Result.isError |> Should.beTrue
 
   [<TestMethod>]
   member _.ValidCredentials() =
     let userName = Environment.GetEnvironmentVariable "FREEMOBILE_ACCOUNT"
     let password = Environment.GetEnvironmentVariable "FREEMOBILE_API_KEY"
     use client = new Client(nonNull userName, nonNull password)
-    client.SendMessage("Hello Cédric, from F#", testContext.CancellationToken) |> Result.isError |> Should.beFalse
+    client.SendMessage "Hello Cédric, from F#" |> Result.isError |> Should.beFalse

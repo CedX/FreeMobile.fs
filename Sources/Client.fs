@@ -37,7 +37,7 @@ type Client(credential: NetworkCredential) =
       GC.SuppressFinalize this
 
   /// Sends an SMS message to the underlying account.
-  member this.AsyncSendMessage(text: string, ?cancellationToken: CancellationToken): Async<Result<unit, HttpRequestException>> = async {
+  member this.AsyncSendMessage(text: string): Async<Result<unit, HttpRequestException>> = async {
     let trimmedText = text.Trim()
     let queryString = HttpUtility.ParseQueryString ""
     queryString.Add("msg", if trimmedText.Length > 160 then trimmedText[0..159] else trimmedText)
@@ -48,8 +48,8 @@ type Client(credential: NetworkCredential) =
     request.Headers.Add("User-Agent", this.UserAgent)
 
     try
-      let! ambientToken = Async.CancellationToken
-      use! response = httpClient.SendAsync(request, defaultArg cancellationToken ambientToken) |> Async.AwaitTask
+      let! cancellationToken = Async.CancellationToken
+      use! response = httpClient.SendAsync(request, cancellationToken) |> Async.AwaitTask
       response.EnsureSuccessStatusCode() |> ignore<HttpResponseMessage>
       return Ok ()
     with
@@ -61,8 +61,8 @@ type Client(credential: NetworkCredential) =
   }
 
   /// Sends an SMS message to the underlying account.
-  member this.SendMessage(text: string, ?cancellationToken: CancellationToken): Result<unit, HttpRequestException> =
-    this.AsyncSendMessage(text, ?cancellationToken = cancellationToken) |> Async.RunSynchronously
+  member this.SendMessage(text: string): Result<unit, HttpRequestException> =
+    this.AsyncSendMessage text |> Async.RunSynchronously
 
   /// Releases any resources associated with this object.
   member private _.Dispose(disposing: bool) =
