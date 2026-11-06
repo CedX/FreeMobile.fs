@@ -1,4 +1,4 @@
-namespace Belin.Sql
+namespace Belin.FreeMobile
 
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open System

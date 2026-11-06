@@ -3,7 +3,6 @@ namespace Belin.FreeMobile
 open System
 open System.Net
 open System.Net.Http
-open System.Threading
 open System.Web
 
 /// Sends messages by SMS to a [FreeMobile](https://mobile.free.fr) account.
