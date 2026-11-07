@@ -22,4 +22,4 @@ type ClientTests() =
     let userName = Environment.GetEnvironmentVariable "FREEMOBILE_ACCOUNT"
     let password = Environment.GetEnvironmentVariable "FREEMOBILE_API_KEY"
     use client = new Client(nonNull userName, nonNull password)
-    client.SendMessage "Hello Cédric, from F#" |> Result.isError |> Should.beFalse
+    client.SendMessage "Hello Cédric, from F#" |> Result.isOk |> Should.beTrue
