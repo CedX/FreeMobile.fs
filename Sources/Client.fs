@@ -48,15 +48,11 @@ type Client(credential: NetworkCredential) =
 
     try
       let! cancellationToken = Async.CancellationToken
-      use! response = httpClient.SendAsync(request, cancellationToken) |> Async.AwaitTask
+      use! response = httpClient.SendAsync(request, cancellationToken) |> Async.Await
       response.EnsureSuccessStatusCode() |> ignore<HttpResponseMessage>
       return Ok ()
     with
-    | :? HttpRequestException as ex -> return Error ex
-    | :? AggregateException as ex ->
-      match ex.InnerException with
-      | :? HttpRequestException as innerEx -> return Error innerEx
-      | _ -> return raise (ex.Flatten())
+      :? HttpRequestException as ex -> return Error ex
   }
 
   /// Sends an SMS message to the underlying account.
