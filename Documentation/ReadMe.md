@@ -32,8 +32,8 @@ open Belin.FreeMobile
 async {
   use client = new Client("your account identifier", "your API key")
   match! client.AsyncSendMessage "Hello World from F#" with
-  | Ok _ -> printfn "The message was sent successfully."
-  | Error error -> printfn $"An error occurred: {error.Message}"
+  | Ok _ -> printn "The message was sent successfully."
+  | Error error -> printn $"An error occurred: {error.Message}"
 }
 ```
 
